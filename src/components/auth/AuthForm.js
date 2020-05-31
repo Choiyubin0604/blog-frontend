@@ -54,8 +54,8 @@ const ButtonWithMarginTop = styled(Button)`
 `;
 
 const textMap = {
-  login: '로그인',
-  register: '회원가입',
+  login: 'Log-in',
+  register: 'Register',
 };
 
 const AuthForm = ({ type }) => {
