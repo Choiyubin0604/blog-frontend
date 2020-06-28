@@ -58,18 +58,36 @@ const textMap = {
   register: 'Register',
 };
 
-const AuthForm = ({ type }) => {
+/**
+ * 에러를 보여 줍니다
+ */
+const ErrorMessaga = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+`;
+
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   return (
     <AuthFormBlock>
       <h3>{text}</h3>
-      <form>
-        <StyledInput autoComplete="username" name="username" placeholder="id" />
+      <form onSubmit={onSubmit}>
+        <StyledInput
+          autoComplete="username"
+          name="username"
+          placeholder="id"
+          onChange={onChange}
+          value={form.username}
+        />
         <StyledInput
           autoComplete="new-password"
           name="password"
           placeholder="pw"
           type="password"
+          onChange={onChange}
+          value={form.password}
         />
         {type === 'register' && (
           <StyledInput
@@ -77,8 +95,11 @@ const AuthForm = ({ type }) => {
             name="passwordConfirm"
             placeholder="Password check"
             type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
+        {error && <ErrorMessaga>{error}</ErrorMessaga>}
         <ButtonWithMarginTop cyan fullwidth>
           {text}
         </ButtonWithMarginTop>
